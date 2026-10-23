@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Kalori Makanan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-success text-white text-center py-4 rounded-top-4">
+                        <i class="bi bi-egg-fried display-4"></i>
+                        <h3 class="mt-2 fw-bold">Prediksi Kalori Makanan</h3>
+                        <p class="mb-0 text-white-50">Estimasi Total Kalori Berdasarkan Karbohidrat</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/" method="POST">
+                            <div class="mb-3">
+                                <label for="nama_makanan" class="form-label fw-semibold">
+                                    <i class="bi bi-tag me-1"></i> Nama Makanan / Minuman
+                                </label>
+                                <input type="text" class="form-control form-control-lg" id="nama_makanan" name="nama_makanan" placeholder="Contoh: Roti Tawar" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="carbs" class="form-label fw-semibold">
+                                    <i class="bi bi-lightning-charge me-1"></i> Kandungan Karbohidrat (Gram)
+                                </label>
+                                <div class="input-group">
+                                    <input type="number" step="any" class="form-control form-control-lg" id="carbs" name="carbs" placeholder="0" min="0" required>
+                                    <span class="input-group-text">Gram</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-lg w-100 fw-bold shadow-sm">
+                                <i class="bi bi-calculator me-1"></i> Hitung Prediksi Kalori
+                            </button>
+                        </form>
+
+                        {% if prediction is not none %}
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="alert alert-success text-center rounded-3 p-3 mb-0 shadow-sm">
+                                <h6 class="text-uppercase text-muted fw-bold mb-1">Hasil Prediksi Nutrisi</h6>
+                                <p class="mb-1 fs-5">Makanan: <strong>{{ nama }}</strong></p>
+                                <p class="mb-2 text-secondary">Karbohidrat: <strong>{{ input_val }} Gram</strong></p>
+                                <div class="display-6 fw-bold text-success my-2">
+                                    {{ prediction }} <span class="fs-5 text-dark">kcal</span>
+                                </div>
+                                <small class="text-muted">Estimasi total kalori berdasarkan model Regresi Linear.</small>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-white text-center py-3 text-muted rounded-bottom-4">
+                        <small>TA-02 Praktikum Pembelajaran Mesin &copy; 2026</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
